@@ -1,0 +1,92 @@
+// CosmoHub Onboarding Slider Script
+// Manages slide position, dot indicators, button states, and keyboard navigation
+
+// DOM Elements
+const slidesTrack = document.querySelector('#slidesTrack');
+const prevBtn = document.querySelector('#prevBtn');
+const nextBtn = document.querySelector('#nextBtn');
+const dotsContainer = document.querySelector('#dotsContainer');
+const dots = document.querySelectorAll('.dot');
+const slideCounter = document.querySelector('#slideCounter');
+
+// State
+let currentSlide = 0;
+const totalSlides = 4;
+
+// Update the slide UI based on currentSlide index
+function updateSlider() {
+  // Translate the slides track horizontally
+  slidesTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+  // Update dots active class
+  dots.forEach((dot, index) => {
+    if (index === currentSlide) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
+
+  // Update counter text
+  slideCounter.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
+
+  // Enable / disable Back button on first slide
+  if (currentSlide === 0) {
+    prevBtn.disabled = true;
+  } else {
+    prevBtn.disabled = false;
+  }
+
+  // Update Next button label on last slide
+  if (currentSlide === totalSlides - 1) {
+    nextBtn.textContent = 'Finish →';
+  } else {
+    nextBtn.textContent = 'Next →';
+  }
+}
+
+// Next button handler
+function nextSlide() {
+  if (currentSlide < totalSlides - 1) {
+    currentSlide++;
+    updateSlider();
+  } else {
+    // Redirect to main.html on the final slide
+    window.location.href = 'main.html';
+  }
+}
+
+// Previous button handler
+function prevSlide() {
+  if (currentSlide > 0) {
+    currentSlide--;
+    updateSlider();
+  }
+}
+
+// Event Listeners
+nextBtn.addEventListener('click', nextSlide);
+prevBtn.addEventListener('click', prevSlide);
+
+// Dot indicator click navigation
+dotsContainer.addEventListener('click', function (e) {
+  if (e.target.classList.contains('dot')) {
+    const slideIndex = parseInt(e.target.getAttribute('data-index'), 10);
+    if (!isNaN(slideIndex)) {
+      currentSlide = slideIndex;
+      updateSlider();
+    }
+  }
+});
+
+// Keyboard navigation (Left & Right Arrow Keys)
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowRight') {
+    nextSlide();
+  } else if (e.key === 'ArrowLeft') {
+    prevSlide();
+  }
+});
+
+// Initialize slider on load
+updateSlider();

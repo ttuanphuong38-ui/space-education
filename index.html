@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CosmoHub - Welcome</title>
+  <!-- Google Fonts: Fredoka for playful rounded headings, Plus Jakarta Sans for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Star Background Effects -->
+  <div class="stars-bg"></div>
+
+  <!-- Onboarding Card Container -->
+  <main class="onboarding-card">
+    
+    <!-- Top Header / Logo -->
+    <header class="card-header">
+      <h1 class="brand-logo">CosmoHub</h1>
+    </header>
+
+    <!-- Slide Window Track Wrapper -->
+    <div class="slides-viewport">
+      <div class="slides-track" id="slidesTrack">
+        
+        <!-- Slide 1 -->
+        <section class="slide" id="slide-0">
+          <h2 class="slide-heading">Welcome to CosmoHub!</h2>
+          <p class="slide-subtitle">Your cozy gateway to exploring the universe, tracking stars, and capturing the night sky.</p>
+          <div class="badge-container">
+            <span class="badge badge-thistle">Wait, where do I start?</span>
+          </div>
+          <p class="slide-note">Well, let's take a quick look!</p>
+        </section>
+
+        <!-- Slide 2 -->
+        <section class="slide" id="slide-1">
+          <h2 class="slide-heading">Curious about Astronomy?</h2>
+          <p class="slide-subtitle">Ever looked up at the stars and wondered what constellations or nebulas you were actually seeing?</p>
+          <div class="badge-container">
+            <span class="badge badge-aqua">but I don't have a giant telescope...</span>
+          </div>
+          <p class="slide-note">Guess what? You don't need one!</p>
+        </section>
+
+        <!-- Slide 3 -->
+        <section class="slide" id="slide-2">
+          <h2 class="slide-heading">Anyone Can Touch the Stars</h2>
+          <p class="slide-subtitle">Whether you're learning constellations, checking light pollution, or sharing your mobile astrophotography — all you need is curiosity.</p>
+          <div class="badge-container">
+            <span class="badge badge-thistle">as long as you love the night sky!</span>
+          </div>
+          <p class="slide-note">No fancy gear required.</p>
+        </section>
+
+        <!-- Slide 4 -->
+        <section class="slide" id="slide-3">
+          <h2 class="slide-heading">Ready to Explore?</h2>
+          <p class="slide-subtitle">Dive into interactive quizzes, explore dark-sky maps, and join a community of stargazers.</p>
+          <div class="badge-container">
+            <span class="badge badge-aqua">Let's begin your cosmic journey!</span>
+          </div>
+          <div class="action-container">
+            <a href="main.html" class="btn-start" id="startBtn">Start Exploring &rarr;</a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <footer class="card-footer">
+      <button class="nav-btn btn-back" id="prevBtn" aria-label="Previous slide">&larr; Back</button>
+      
+      <div class="nav-status">
+        <div class="dots-indicator" id="dotsContainer">
+          <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+          <button class="dot" data-index="1" aria-label="Slide 2"></button>
+          <button class="dot" data-index="2" aria-label="Slide 3"></button>
+          <button class="dot" data-index="3" aria-label="Slide 4"></button>
+        </div>
+        <span class="slide-counter" id="slideCounter">Slide 1 of 4</span>
+      </div>
+
+      <button class="nav-btn btn-next" id="nextBtn" aria-label="Next slide">Next &rarr;</button>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
