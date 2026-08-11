@@ -93,22 +93,25 @@
       </div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
-    <footer class="card-footer">
-      <button class="nav-btn btn-back" id="prevBtn" aria-label="Previous slide">&larr; Back</button>
-      
-      <div class="nav-status">
-        <div class="dots-indicator" id="dotsContainer">
-          <button class="dot active" data-index="0" aria-label="Slide 1"></button>
-          <button class="dot" data-index="1" aria-label="Slide 2"></button>
-          <button class="dot" data-index="2" aria-label="Slide 3"></button>
-          <button class="dot" data-index="3" aria-label="Slide 4"></button>
-        </div>
+    <!-- Bottom Navigation Controls inside Card Footer -->
+      <footer class="card-footer">
+        <div class="nav-status">
+          <div class="dots-indicator" id="dotsContainer">
+            <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+            <button class="dot" data-index="1" aria-label="Slide 2"></button>
+            <button class="dot" data-index="2" aria-label="Slide 3"></button>
+            <button class="dot" data-index="3" aria-label="Slide 4"></button>
+          </div>
+         
         <span class="slide-counter" id="slideCounter">Slide 1 of 4</span>
       </div>
 
-      <button class="nav-btn btn-next" id="nextBtn" aria-label="Next slide">Next &rarr;</button>
-    </footer>
+     <div class="nav-actions">
+          <button class="nav-btn btn-back" id="prevBtn" aria-label="Previous slide">&larr; Back</button>
+          <button class="nav-btn btn-next" id="nextBtn" aria-label="Next slide">Next &rarr;</button>
+        </div>
+      </footer>
+    </div>
 
   </main>
 
