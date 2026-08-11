@@ -60,15 +60,18 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 580px;
-  background: rgba(12, 13, 69, 0.85);
-  border: 3px solid var(--dusk-blue);
+  max-width: 680px;
+  background: rgba(12, 13, 69, 0.92);
+  border: 1.5px solid var(--dusk-blue);
   border-radius: 28px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(62, 91, 163, 0.25);
-  backdrop-filter: blur(12px);
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(62, 91, 163, 0.15);
+  backdrop-filter: blur(16px);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-height: 540px;
 }
 /* Card Header & Brand Logo */
 .card-header {
