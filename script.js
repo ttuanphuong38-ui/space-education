@@ -22,6 +22,7 @@ function navigateToMain() {
     window.location.href = 'main.html';
   }, 300);
 }
+
 // Update the slide UI based on currentSlide index
 function updateSlider() {
   // Translate the slides track horizontally
@@ -35,9 +36,6 @@ function updateSlider() {
       dot.classList.remove('active');
     }
   });
-
-  // Update counter text
-  slideCounter.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
 
   // Enable / disable Back button on first slide
   if (currentSlide === 0) {
@@ -61,7 +59,7 @@ function nextSlide() {
     updateSlider();
   } else {
     // Redirect to main.html on the final slide
-    window.location.href = 'main.html';
+    navigateToMain();
   }
 }
 
