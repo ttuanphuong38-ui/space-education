@@ -188,7 +188,7 @@ body {
   position: relative;
 }
 
-* Distinct Header Banner / Accent Bar across top of center card */
+/* Distinct Header Banner / Accent Bar across top of center card */
 .card-top-bar {
   height: 8px;
   width: 100%;
@@ -286,6 +286,65 @@ body {
   background-color: var(--alice-blue);
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 8px 24px rgba(218, 232, 251, 0.45);
+}
+/* Bottom Controls Footer inside Center Card Area */
+.card-footer {
+  width: 680px;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  padding: 18px 36px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  border-top: 1.5px solid rgba(62, 91, 163, 0.4);
+  background: rgba(12, 13, 69, 0.98);
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+
+/* Bottom-Left Controls: Dots Only */
+.nav-status {
+  display: flex;
+  align-items: center;
+}
+
+.dots-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--dusk-blue);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.dot:hover {
+  background: var(--thistle);
+}
+
+.dot.active {
+  width: 28px;
+  border-radius: 12px;
+  background: var(--pearl-aqua);
+  box-shadow: 0 0 12px rgba(117, 203, 209, 0.6);
+}
+
+/* Bottom-Right Controls: Navigation Buttons */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 /* Navigation Buttons */
 .nav-btn {
