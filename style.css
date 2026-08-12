@@ -72,18 +72,22 @@ body {
   align-items: center;
   margin-top: 8px;
 }
-/* Card Header & Brand Logo */
-.card-header {
-  padding: 24px 28px 12px;
+
+/* App Header */
+.app-header {
+  margin-bottom: 16px;
   text-align: center;
 }
+
 .brand-logo {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 2.1rem;
   font-weight: 700;
   color: var(--pearl-aqua);
-  letter-spacing: 0.5px;
+  letter-spacing: 1.2px;
+  text-shadow: 0 0 24px rgba(117, 203, 209, 0.4);
 }
+
 /* Slide Viewport & Track */
 .slides-viewport {
   width: 100%;
