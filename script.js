@@ -81,6 +81,7 @@ if (startBtn) {
     navigateToMain();
   });
 }
+
 // Dot indicator click navigation
 dotsContainer.addEventListener('click', function (e) {
   if (e.target.classList.contains('dot')) {
