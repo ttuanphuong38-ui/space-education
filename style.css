@@ -276,14 +276,16 @@ body {
   text-decoration: none;
   border: none;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(117, 203, 209, 0.35);
+  box-shadow: 0 6px 20px rgba(117, 203, 209, 0.4);
   transition: all 0.25s ease;
 }
+
 .btn-start:hover {
   background-color: var(--alice-blue);
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 8px 26px rgba(218, 232, 251, 0.5);
 }
+
 /* Bottom Controls Footer inside Center Card Area */
 .card-footer {
   width: 680px;
@@ -363,7 +365,7 @@ body {
 .btn-back:hover:not(:disabled) {
   background: var(--dusk-blue);
   border-color: var(--dusk-blue);
-   transform: translateY(-1px);
+  transform: translateY(-1px);
 }
 
 .btn-back:disabled {
@@ -371,11 +373,12 @@ body {
   cursor: not-allowed;
   border-color: rgba(62, 91, 163, 0.5);
 }
+
 btn-next {
   background: var(--pearl-aqua);
   color: var(--navy-deep);
   border: none;
-   box-shadow: 0 4px 14px rgba(117, 203, 209, 0.3);
+  box-shadow: 0 4px 14px rgba(117, 203, 209, 0.3);
 }
 
 .btn-next:hover {
@@ -383,28 +386,63 @@ btn-next {
   box-shadow: 0 6px 18px rgba(218, 232, 251, 0.4);
   transform: translateY(-1px);
 }
-/* ----------------------------------------------------
-   3D CAROUSEL STATE SELECTORS (:has active dot)
----------------------------------------------------- */
-/* Slide 0 Active */
-.onboarding-app:has(.dot[data-index="0"].active) #slide-0 {
-  opacity: 1;
-  transform: scale(1);
-  filter: blur(0px);
-  pointer-events: auto;
+
+/* Responsive Layout Adjustments */
+@media (max-width: 1200px) {
+  .slide-panel-container {
+    gap: 16px;
+  }
+  .slide-image-panel {
+    flex: 0 0 200px;
+    width: 200px;
+  }
+  .slide-content-center,
+  .card-footer {
+    width: 560px;
+  }
+  .slide-content-center {
+    flex: 0 0 560px;
+  }
 }
-.onboarding-app:has(.dot[data-index="0"].active) #slide-0 .card-inner {
-  border-color: var(--dusk-blue);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(117, 203, 209, 0.25);
+
+@media (max-width: 900px) {
+  .slide-image-panel {
+    display: none; /* Hide side panels on tablet/mobile to keep central focus */
+  }
+  .slide-content-center,
+  .card-footer {
+    width: 100%;
+    max-width: 600px;
+  }
+  .slide-content-center {
+    flex: 0 0 100%;
+  }
 }
-/* Slide 1 Active */
-.onboarding-app:has(.dot[data-index="1"].active) #slide-1 {
-  opacity: 1;
-  transform: scale(1);
-  filter: blur(0px);
-  pointer-events: auto;
-}
-.onboarding-app:has(.dot[data-index="1"].active) #slide-1 .card-inner {
-  border-color: var(--dusk-blue);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(117, 203, 209, 0.25);
+
+@media (max-width: 480px) {
+  .slide-body {
+    padding: 28px 20px 85px;
+  }
+
+  .slide-heading {
+    font-size: 1.75rem;
+  }
+
+  .slide-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .badge {
+    font-size: 0.9rem;
+    padding: 8px 18px;
+  }
+
+  .card-footer {
+    padding: 14px 20px 18px;
+  }
+
+  .nav-btn {
+    padding: 8px 16px;
+    font-size: 0.88rem;
+  }
 }
