@@ -258,9 +258,10 @@ body {
   color: var(--pearl-aqua);
   opacity: 0.95;
 }
-/* Slide 4 Action Button */
+
+/* Action Button */
 .action-container {
-  margin-top: 14px;
+  margin-top: 8px;
 }
 
 .btn-start {
@@ -270,18 +271,18 @@ body {
   font-weight: 700;
   color: var(--navy-deep);
   background-color: var(--pearl-aqua);
-  padding: 14px 32px;
+  padding: 14px 34px;
   border-radius: 50px;
   text-decoration: none;
   border: none;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(117, 203, 209, 0.35);
+  box-shadow: 0 6px 20px rgba(117, 203, 209, 0.35);
   transition: all 0.25s ease;
 }
 .btn-start:hover {
   background-color: var(--alice-blue);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 24px rgba(218, 232, 251, 0.45);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 26px rgba(218, 232, 251, 0.5);
 }
 /* Bottom Controls Footer inside Center Card Area */
 .card-footer {
