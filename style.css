@@ -88,6 +88,14 @@ body {
   text-shadow: 0 0 24px rgba(117, 203, 209, 0.4);
 }
 
+/* Carousel Section */
+.carousel-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
 /* Slide Viewport & Track */
 .slides-viewport {
   width: 100%;
