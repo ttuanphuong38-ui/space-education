@@ -75,6 +75,12 @@ function prevSlide() {
 nextBtn.addEventListener('click', nextSlide);
 prevBtn.addEventListener('click', prevSlide);
 
+if (startBtn) {
+  startBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    navigateToMain();
+  });
+}
 // Dot indicator click navigation
 dotsContainer.addEventListener('click', function (e) {
   if (e.target.classList.contains('dot')) {
