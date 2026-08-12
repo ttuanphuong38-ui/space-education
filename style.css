@@ -7,6 +7,7 @@
    - Thistle: #F2D2FF (Callout badges, highlights)
    - Alice Blue: #DAE8FB (Primary text)
 ---------------------------------------------------- */
+
 :root {
   --navy-deep: #0C0D45;
   --dusk-blue: #3E5BA3;
@@ -17,17 +18,20 @@
   --font-heading: 'Fredoka', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 body {
   min-height: 100vh;
   background-color: var(--navy-deep);
   color: var(--alice-blue);
   font-family: var(--font-body);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
