@@ -38,6 +38,7 @@ body {
   overflow-x: hidden;
   position: relative;
 }
+
 /* Ambient Star Background */
 .stars-bg {
   position: fixed;
@@ -59,23 +60,17 @@ body {
   z-index: 0;
   pointer-events: none;
 }
-/* Onboarding Main Card */
-.onboarding-card {
+
+/* Main Onboarding Shell */
+.onboarding-app {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 680px;
-  background: rgba(12, 13, 69, 0.92);
-  border: 1.5px solid var(--dusk-blue);
-  border-radius: 28px;
-  box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(62, 91, 163, 0.15);
-  backdrop-filter: blur(16px);
+  max-width: 1280px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  min-height: 540px;
+  align-items: center;
+  margin-top: 8px;
 }
 /* Card Header & Brand Logo */
 .card-header {
