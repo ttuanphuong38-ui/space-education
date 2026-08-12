@@ -253,10 +253,10 @@ body {
 }
 
 .slide-note {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--pearl-aqua);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 /* Slide 4 Action Button */
 .action-container {
