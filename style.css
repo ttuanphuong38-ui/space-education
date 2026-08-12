@@ -96,6 +96,39 @@ body {
   align-items: center;
   position: relative;
 }
+
+/* Viewport Window */
+.slides-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Slides Track (Translates Horizontally) */
+.slides-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Individual Slide (100% Viewport Width) */
+.slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 10px 0;
+  user-select: none;
+}
+
+/* 3-Panel Layout Container per Slide */
+.slide-panel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+}
+
 /* Slide Viewport & Track */
 .slides-viewport {
   width: 100%;
