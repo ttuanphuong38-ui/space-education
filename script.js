@@ -13,6 +13,15 @@ const slideCounter = document.querySelector('#slideCounter');
 let currentSlide = 0;
 const totalSlides = 4;
 
+// Smooth Navigation to main.html
+function navigateToMain() {
+  document.body.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+  document.body.style.opacity = '0';
+  document.body.style.transform = 'scale(0.98)';
+  setTimeout(() => {
+    window.location.href = 'main.html';
+  }, 300);
+}
 // Update the slide UI based on currentSlide index
 function updateSlider() {
   // Translate the slides track horizontally
