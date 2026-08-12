@@ -62,3 +62,52 @@ if (isConfigured && auth) {
     renderLoggedOutState();
   }
 }
+// Sign In Action (Google Popup Auth)
+if (signinBtn) {
+  signinBtn.addEventListener('click', async () => {
+    if (isConfigured && auth && provider) {
+      try {
+        await signInWithPopup(auth, provider);
+      } catch (error) {
+        console.error("Firebase Auth Popup Error:", error);
+        if (error.code === 'auth/popup-closed-by-user') {
+          console.info("Sign-in popup closed by user.");
+        } else if (error.code === 'auth/unauthorized-domain') {
+          alert("Domain unauthorized in Firebase Console. Please add your domain to Firebase Auth -> Settings -> Authorized Domains.");
+          triggerDemoSignIn();
+        } else {
+          alert(`Authentication error: ${error.message || "Failed to sign in"}`);
+          triggerDemoSignIn();
+        }
+      }
+    } else {
+      // Demo authentication state for testing
+      triggerDemoSignIn();
+    }
+  });
+}
+
+// Sign Out Action
+if (signoutBtn) {
+  signoutBtn.addEventListener('click', async () => {
+    if (isConfigured && auth) {
+      try {
+        await signOut(auth);
+      } catch (error) {
+        console.error("Firebase SignOut Error:", error);
+      }
+    }
+    localStorage.removeItem('cosmohub_demo_user');
+    renderLoggedOutState();
+  });
+}
+
+// Helper: Demo Mode Simulation
+function triggerDemoSignIn() {
+  const demoUser = {
+    displayName: "Alex Rover",
+    photoURL: null
+  };
+  localStorage.setItem('cosmohub_demo_user', JSON.stringify(demoUser));
+  renderLoggedInState(demoUser);
+}
