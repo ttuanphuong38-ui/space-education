@@ -225,9 +225,9 @@ body {
   margin-bottom: 28px;
 }
 
-/* Playful Callout Badges */
+/* Callout Highlights / Badges - Completely static, horizontal, standard aligned */
 .badge-container {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .badge {
@@ -235,15 +235,11 @@ body {
   font-family: var(--font-heading);
   font-size: 1.05rem;
   font-weight: 600;
-  padding: 10px 22px;
+  padding: 10px 24px;
   border-radius: 50px;
   color: var(--navy-deep);
-  transform: rotate(-1.5deg);
+  transform: none;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
-}
-.slide:hover .badge {
-  transform: rotate(0deg) scale(1.03);
 }
 
 .badge-thistle {
