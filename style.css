@@ -1,17 +1,19 @@
 /* ----------------------------------------------------
-   CosmoHub Onboarding Styles
+   CosmoHub Onboarding Single-Card Slide Layout Styles
    Palette:
-   - Deep Navy: #0C0D45 (Primary background)
-   - Dusk Blue: #3E5BA3 (Card, borders, secondary controls)
-   - Pearl Aqua: #75CBD1 (Accent, active, buttons)
-   - Thistle: #F2D2FF (Callout badges, highlights)
-   - Alice Blue: #DAE8FB (Primary text)
----------------------------------------------------- */
+   - Deep Navy: #0C0D45 (Screen Background)
+   - Dusk Blue: #3E5BA3 (Cards & Borders)
+   - Lavender Soft: #c084fc (Accent Buttons, Active Dots, Highlights)
+   - Lavender Light: #e9d5ff (Subtle Text Accents, Logos)
+   - Thistle: #F2D2FF (Secondary Highlights)
+   - Alice Blue: #DAE8FB (Body Text)
 
+---------------------------------------------------- */
 :root {
   --navy-deep: #0C0D45;
   --dusk-blue: #3E5BA3;
-  --pearl-aqua: #75CBD1;
+  --lavender-soft: #c084fc;
+  --lavender-light: #e9d5ff;
   --thistle: #F2D2FF;
   --alice-blue: #DAE8FB;
   
@@ -26,16 +28,20 @@
 }
 
 body {
+  height: 100vh;
   min-height: 100vh;
-  background-color: var(--navy-deep);
+  background-image: url("https://i.pinimg.com/736x/bb/a5/e1/bba5e198cb2a01365effa1997d9aba35.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--alice-blue);
   font-family: var(--font-body);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;;
+  justify-content: center;
   align-items: center;
-  padding: 16px 20px 32px;
-  overflow-x: hidden;
+  padding: 16px;
+  overflow: hidden;
   position: relative;
 }
 
@@ -48,10 +54,10 @@ body {
   height: 100vh;
   background-image: 
     radial-gradient(2px 2px at 20px 30px, var(--alice-blue), rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 40px 70px, var(--pearl-aqua), rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 40px 70px, var(--lavender-soft), rgba(0,0,0,0)),
     radial-gradient(1px 1px at 90px 40px, var(--thistle), rgba(0,0,0,0)),
     radial-gradient(2px 2px at 160px 120px, var(--alice-blue), rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 230px 190px, var(--pearl-aqua), rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 230px 190px, var(--lavender-soft), rgba(0,0,0,0)),
     radial-gradient(2px 2px at 300px 60px, var(--thistle), rgba(0,0,0,0)),
     radial-gradient(1px 1px at 370px 150px, var(--alice-blue), rgba(0,0,0,0));
   background-repeat: repeat;
@@ -66,7 +72,7 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1180px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,20 +83,86 @@ body {
 .app-header {
   margin-bottom: 16px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .brand-logo {
   font-family: var(--font-heading);
-  font-size: 2.1rem;
+  font-size: 2.4rem;
   font-weight: 700;
-  color: var(--pearl-aqua);
+  color: var(--lavender-light);
   letter-spacing: 1.2px;
-  text-shadow: 0 0 24px rgba(117, 203, 209, 0.4);
+  text-shadow: 0 0 24px rgba(192, 132, 252, 0.4);
+
 }
 
-/* Carousel Section */
-.carousel-section {
+/* Onboarding Section Wrapper with Outer Nav Arrows */
+.onboarding-container {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  position: relative;
+}
+
+/* Outer Dedicated Floating Navigation Arrow Buttons */
+.nav-arrow {
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(12, 13, 69, 0.88);
+  border: 2px solid var(--dusk-blue);
+  color: var(--lavender-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  outline: none;
+  z-index: 5;
+}
+
+.nav-arrow:hover:not(:disabled) {
+  background: var(--dusk-blue);
+  color: #ffffff;
+  border-color: var(--lavender-soft);
+  transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 22px rgba(192, 132, 252, 0.35);
+}
+
+.nav-arrow:active:not(:disabled) {
+  transform: translateY(0) scale(0.96);
+}
+
+/* Initial Disabled Arrow State */
+.nav-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: rgba(62, 91, 163, 0.4);
+  color: rgba(218, 232, 251, 0.35);
+  box-shadow: none;
+  transform: none;
+}
+
+/* Expanded Main Card Container with Uniform Rounded Dark Border */
+.main-card {
+  flex: 1;
+  max-width: 1000px;
+  width: 85vw;
+  height: 580px;
+  max-height: 600px;
+  background: rgba(12, 13, 69, 0.94);
+  border: 2px solid var(--dusk-blue);
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(192, 132, 252, 0.15);
+  backdrop-filter: blur(16px);
   display: flex;
   flex-direction: column;
   align-items: center;
