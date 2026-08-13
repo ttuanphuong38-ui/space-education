@@ -219,48 +219,143 @@
       margin-bottom: 50px;
     }
 
-    .feature-card {
-      background: var(--navy-deep);
-      border: 2px solid var(--dusk-blue);
-      border-radius: 16px;
-      padding: 24px 20px;
-      text-align: left;
-      transition: transform 0.2s ease;
+    /* Individual Action Card - Clean Catalina Blue card with rounded corners and uniform border */
+    .action-card {
+      background-color: var(--card-catalina);
+      border: 2px solid rgba(246, 148, 29, 0.35);
+      border-radius: 24px;
+      padding: 36px 30px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .feature-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--pearl-aqua);
+    .action-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent-hawkbit);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(254, 212, 109, 0.2);
     }
 
-    .feature-card h3 {
+    /* Card Content Area */
+    .card-content {
+      margin-bottom: 32px;
+    }
+
+    .card-title {
       font-family: var(--font-heading);
-      color: var(--pearl-aqua);
-      font-size: 1.2rem;
-      margin-bottom: 8px;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--accent-hawkbit);
+      margin-bottom: 14px;
+      line-height: 1.3;
     }
 
-    .feature-card p {
-      font-size: 0.95rem;
-      margin: 0;
-      opacity: 0.8;
+    .card-description {
+      font-size: 1.05rem;
+      color: var(--text-alice);
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* Bottom Card Button */
+    .card-action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      background-color: var(--accent-portland);
+      padding: 14px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(240, 102, 42, 0.4);
+      transition: all 0.25s ease;
+      width: 100%;
+    }
+
+    .card-action-btn:hover {
+      background-color: var(--accent-mimolette);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(246, 148, 29, 0.5);
+    }
+
+    /* Return to Onboarding Link */
+    .back-footer {
+      margin-top: 10px;
+      text-align: center;
     }
 
     .back-link {
-      display: inline-block;
-      margin-top: 30px;
-      color: var(--pearl-aqua);
       font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--accent-mimolette); 
+      transition: color 0.2s ease;
       text-decoration: none;
       font-weight: 600;
     }
 
     .back-link:hover {
       text-decoration: underline;
+      color: var(--accent-hawkbit);
     }
+
+    
+    /* Responsive Adjustments */
+    @media (max-width: 980px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+      }
+
+      .hero-title {
+        font-size: 2.6rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .hero-title {
+        font-size: 2.1rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .action-card {
+        padding: 28px 22px 26px;
+      }
+    }
+
   </style>
 </head>
 <body>
+    <!-- Ambient Star Background -->
+  <div class="stars-bg"></div>
+    <div class="dashboard-container">
+    
+    <!-- Top Header Navigation -->
+    <header>
+      <a href="main.html" class="brand-logo">CosmoHub ✦</a>
+      
+      <!-- Header Auth Section -->
+      <div id="auth-container" class="auth-container">
+        
+        <!-- Unauthenticated State: Clean Capsule "Sign In" Button -->
+        <button id="signin-btn" class="signin-btn">Sign In</button>
+
 
   <header>
     <div class="brand-logo">CosmoHub</div>
