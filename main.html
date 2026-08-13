@@ -307,7 +307,6 @@
       color: var(--accent-hawkbit);
     }
 
-    
     /* Responsive Adjustments */
     @media (max-width: 980px) {
       .cards-grid {
@@ -338,13 +337,14 @@
         padding: 28px 22px 26px;
       }
     }
-
   </style>
 </head>
 <body>
-    <!-- Ambient Star Background -->
+
+  <!-- Ambient Star Background -->
   <div class="stars-bg"></div>
-    <div class="dashboard-container">
+
+  <div class="dashboard-container">
     
     <!-- Top Header Navigation -->
     <header>
@@ -356,33 +356,66 @@
         <!-- Unauthenticated State: Clean Capsule "Sign In" Button -->
         <button id="signin-btn" class="signin-btn">Sign In</button>
 
+        <!-- Authenticated State Profile Badge (Initially Hidden) -->
+        <div id="user-profile" class="user-profile" style="display: none;">
+          <div id="user-avatar-container" class="user-avatar-container">
+            <img id="user-photo" class="user-photo" src="" alt="User Avatar" style="display: none;">
+            <span id="user-initials" class="user-initials">AR</span>
+          </div>
+          <span id="user-name" class="user-name">Alex Rover</span>
+          <button id="signout-btn" class="signout-btn">Sign Out</button>
+        </div>
+              </div>
+    </header>
 
-  <header>
-    <div class="brand-logo">CosmoHub</div>
-    <div class="user-pill">Stargazer Explorer</div>
-  </header>
+    <!-- Main Hero Section -->
+    <section class="hero-section">
+      <h1 class="hero-title">Welcome to CosmoHub!</h1>
+      <p class="hero-subtitle">Where do you want to explore today?</p>
+    </section>
 
-  <main>
-    <h1>CosmoHub Dashboard</h1>
-    <p>Welcome! You have successfully completed the onboarding flow. Get ready to track constellations, check local dark skies, and capture astrophotography.</p>
+    <!-- 3 Action Cards Horizontal Grid Layout -->
+    <main class="cards-grid">
+      
+      <!-- Card 1 -->
+      <article class="action-card card-1">
+        <div class="card-content">
+          <h2 class="card-title">Constellation Quizzes &amp; Guides</h2>
+          <p class="card-description">Interactive challenges and star maps so you actually know what you're looking at tonight.</p>
+        </div>
+        <a href="#learn" class="card-action-btn">Start Learning &#10141;</a>
+      </article>
 
-    <div class="grid-features">
-      <div class="feature-card">
-        <h3>Star Tracker</h3>
-        <p>Real-time constellation overlays & sky maps for your local coordinates.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Dark-Sky Finder</h3>
-        <p>Locate the best light-pollution-free spots near you for stargazing.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Astro Community</h3>
-        <p>Share your night sky photos and join active stargazing discussions.</p>
-      </div>
-    </div>
+      <!-- Card 2 -->
+      <article class="action-card card-2">
+        <div class="card-content">
+          <h2 class="card-title">Latest Space Reads</h2>
+          <p class="card-description">Cosmic news, observation logs, and beginner tips written by fellow stargazers.</p>
+        </div>
+        <a href="#news" class="card-action-btn">Read Articles &#10141;</a>
+      </article>
 
-    <a href="index.html" class="back-link">&larr; Back to Onboarding</a>
-  </main>
+      <!-- Card 3 -->
+      <article class="action-card card-3">
+        <div class="card-content">
+          <h2 class="card-title">Community Astrophotography</h2>
+          <p class="card-description">Real night sky shots, phone-camera setups, and field notes shared by our stargazing crew.</p>
+        </div>
+        <a href="#gallery" class="card-action-btn">Explore Gallery &#10141;</a>
+      </article>
+
+    </main>
+
+    <!-- Footer Back Link -->
+    <footer class="back-footer">
+      <a href="index.html" class="back-link">&larr; Back to Onboarding</a>
+    </footer>
+
+  </div>
+
+ 
+
+  
 
 </body>
 </html>
