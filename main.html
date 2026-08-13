@@ -94,17 +94,76 @@
       letter-spacing: 1px;
       text-shadow: 0 0 20px rgba(254, 212, 109, 0.35);
       text-decoration: none;
-
     }
 
-    .user-pill {
+    /* Header Auth Navigation Section */
+    .auth-container {
+      display: flex;
+      align-items: center;
+    }
+
+    /* Unauthenticated State: Clean Styled Pill Button (Dusk Blue with Orange Border) */
+    .signin-btn {
       font-family: var(--font-heading);
-      background-color: var(--thistle);
-      color: var(--navy-deep);
+      font-size: 0.95rem;
+      font-weight: 600;
+      background-color: var(--card-catalina);
+      color: var(--accent-hawkbit);
+      border: 2px solid var(--accent-mimolette);
+      padding: 8px 24px;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(246, 148, 29, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .signin-btn:hover {
+      background-color: var(--accent-mimolette);
+      color: var(--bg-midnight);
+      box-shadow: 0 6px 20px rgba(246, 148, 29, 0.4);
+      transform: translateY(-1px);
+    }
+
+    /* Authenticated State Profile Badge */
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background-color: var(--card-catalina);
+      border: 2px solid var(--accent-mimolette);
       padding: 6px 16px;
       border-radius: 50px;
+      box-shadow: 0 4px 14px rgba(246, 148, 29, 0.25);
+    }
+
+    .user-avatar-container {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: var(--accent-hawkbit);
+      color: var(--bg-midnight);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      overflow: hidden;
+      border: 2px solid var(--accent-hawkbit);
+      flex-shrink: 0;
+    }
+
+    .user-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .user-name {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
       font-weight: 600;
-      font-size: 0.9rem;
+      color: var(--accent-hawkbit);
     }
 
     main {
