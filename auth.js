@@ -62,6 +62,7 @@ if (isConfigured && auth) {
     renderLoggedOutState();
   }
 }
+
 // Sign In Action (Google Popup Auth)
 if (signinBtn) {
   signinBtn.addEventListener('click', async () => {
@@ -110,4 +111,36 @@ function triggerDemoSignIn() {
   };
   localStorage.setItem('cosmohub_demo_user', JSON.stringify(demoUser));
   renderLoggedInState(demoUser);
+}
+
+// Render Profile Badge in Header
+function renderLoggedInState(user) {
+  const name = user.displayName || "Stargazer Explorer";
+  if (userName) userName.textContent = name;
+
+  // Derive initials
+  const parts = name.trim().split(' ');
+  let initials = parts[0] ? parts[0].charAt(0).toUpperCase() : 'S';
+  if (parts.length > 1) {
+    initials += parts[parts.length - 1].charAt(0).toUpperCase();
+  }
+  if (userInitials) userInitials.textContent = initials;
+
+  if (user.photoURL && userPhoto) {
+    userPhoto.src = user.photoURL;
+    userPhoto.style.display = 'block';
+    if (userInitials) userInitials.style.display = 'none';
+  } else {
+    if (userPhoto) userPhoto.style.display = 'none';
+    if (userInitials) userInitials.style.display = 'inline-block';
+  }
+
+  if (signinBtn) signinBtn.style.display = 'none';
+  if (userProfile) userProfile.style.display = 'flex';
+}
+
+// Render Signed Out State in Header
+function renderLoggedOutState() {
+  if (userProfile) userProfile.style.display = 'none';
+  if (signinBtn) signinBtn.style.display = 'inline-block';
 }
