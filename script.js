@@ -104,4 +104,3 @@ document.addEventListener('keydown', function (e) {
 
 // Initialize slider on load
 updateSlider();
-/*  */
