@@ -1,5 +1,33 @@
 // CosmoHub Onboarding Slider Script
-// Manages slide position, dot indicators, button states, and keyboard navigation
+// Manages slide position, dot indicators, floating outer arrow states, and slide images
+
+// Slide Data Configuration with Local Relative Asset Paths
+const slidesData = [
+  {
+    heading: "CosmoHub ✦",
+    subtitle: "Stargazing shouldn't be complicated. Let's make the night sky fun again.",
+    image: "assets/images/slide1.gif",
+    alt: "CosmoHub ✦"
+  },
+  {
+    heading: "No $1000 Telescope? No Problem.",
+    subtitle: "You don't need fancy gear to spot constellations or track nebulae—just your phone and a bit of curiosity.",
+    image: "assets/images/slide2.gif",
+    alt: "No $1000 Telescope? No Problem."
+  },
+  {
+    heading: "The Sky Belongs to Everyone",
+    subtitle: "Whether you're testing dark-sky spots or taking your first astrophoto, you're in the right place.",
+    image: "assets/images/slide3.gif",
+    alt: "The Sky Belongs to Everyone"
+  },
+  {
+    heading: "Ready to Dive In?",
+    subtitle: "Dive into interactive quizzes, explore dark-sky maps, and join a community of stargazers.",
+    image: "assets/images/slide4.gif",
+    alt: "Ready to Dive In?"
+  }
+];
 
 // DOM Elements
 const slidesTrack = document.querySelector('#slidesTrack');
@@ -7,11 +35,23 @@ const prevBtn = document.querySelector('#prevBtn');
 const nextBtn = document.querySelector('#nextBtn');
 const dotsContainer = document.querySelector('#dotsContainer');
 const dots = document.querySelectorAll('.dot');
-const slideCounter = document.querySelector('#slideCounter');
+const startBtn = document.querySelector('#startBtn');
 
 // State
 let currentSlide = 0;
-const totalSlides = 4;
+const totalSlides = slidesData.length;
+
+// Bind Slide Image Links to Dynamic <img> Elements
+function updateSlideImages() {
+  const slideElements = document.querySelectorAll('.slide');
+  slideElements.forEach((slideEl, index) => {
+    const imgEl = slideEl.querySelector('.slide-image');
+    if (imgEl && slidesData[index]) {
+      imgEl.src = slidesData[index].image;
+      imgEl.alt = slidesData[index].alt;
+    }
+  });
+}
 
 // Smooth Navigation to main.html
 function navigateToMain() {
@@ -23,7 +63,7 @@ function navigateToMain() {
   }, 300);
 }
 
-// Update the slide UI based on currentSlide index
+// Update the slide UI and navigation arrow states based on currentSlide index
 function updateSlider() {
   // Translate the slides track horizontally
   slidesTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -40,15 +80,20 @@ function updateSlider() {
   // Enable / disable Back button on first slide
   if (currentSlide === 0) {
     prevBtn.disabled = true;
+    prevBtn.setAttribute('aria-disabled', 'true');
   } else {
     prevBtn.disabled = false;
+    prevBtn.removeAttribute('aria-disabled');
   }
 
-  // Update Next button label on last slide
+  // Update Next button title on last slide
   if (currentSlide === totalSlides - 1) {
-    nextBtn.textContent = 'Finish →';
+    nextBtn.setAttribute('aria-label', 'Finish onboarding and start exploring');
+    nextBtn.setAttribute('title', 'Finish & Explore');
   } else {
-    nextBtn.textContent = 'Next →';
+    nextBtn.setAttribute('aria-label', 'Next slide');
+    nextBtn.setAttribute('title', 'Next Slide');
+
   }
 }
 
@@ -58,7 +103,7 @@ function nextSlide() {
     currentSlide++;
     updateSlider();
   } else {
-    // Redirect to main.html on the final slide
+  // Navigate to main.html on the final slide
     navigateToMain();
   }
 }
@@ -72,8 +117,8 @@ function prevSlide() {
 }
 
 // Event Listeners
-nextBtn.addEventListener('click', nextSlide);
-prevBtn.addEventListener('click', prevSlide);
+if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+if (prevBtn) prevBtn.addEventListener('click', prevSlide);
 
 if (startBtn) {
   startBtn.addEventListener('click', function (e) {
@@ -83,15 +128,17 @@ if (startBtn) {
 }
 
 // Dot indicator click navigation
-dotsContainer.addEventListener('click', function (e) {
-  if (e.target.classList.contains('dot')) {
-    const slideIndex = parseInt(e.target.getAttribute('data-index'), 10);
-    if (!isNaN(slideIndex)) {
-      currentSlide = slideIndex;
-      updateSlider();
+if (dotsContainer) {
+  dotsContainer.addEventListener('click', function (e) {
+    if (e.target.classList.contains('dot')) {
+      const slideIndex = parseInt(e.target.getAttribute('data-index'), 10);
+      if (!isNaN(slideIndex)) {
+        currentSlide = slideIndex;
+        updateSlider();
+      }
     }
-  }
-});
+  });
+}
 
 // Keyboard navigation (Left & Right Arrow Keys)
 document.addEventListener('keydown', function (e) {
@@ -102,5 +149,6 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-// Initialize slider on load
+// Initialize slide images and slider state on page load
+updateSlideImages();
 updateSlider();
