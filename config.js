@@ -1,9 +1,0 @@
-// Firebase Project Configuration Credentials for CosmoHub
-export const firebaseConfig = {
-  apiKey: "AIzaSyCSlTdGCgO07oaZXfC2L6yTlwvftsKWSBs",
-  authDomain: "cosmohub-7a8b8.firebaseapp.com",
-  projectId: "cosmohub-7a8b8",
-  storageBucket: "cosmohub-7a8b8.firebasestorage.app",
-  messagingSenderId: "338419155792",
-  appId: "1:338419155792:web:1e7bf7b5f86c393b986255"
-};
