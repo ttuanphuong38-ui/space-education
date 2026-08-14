@@ -2,18 +2,16 @@
    CosmoHub Onboarding Single-Card Slide Layout Styles
    Palette:
    - Deep Navy: #0C0D45 (Screen Background)
-   - Dusk Blue: #3E5BA3 (Cards & Borders)
-   - Lavender Soft: #c084fc (Accent Buttons, Active Dots, Highlights)
-   - Lavender Light: #e9d5ff (Subtle Text Accents, Logos)
-   - Thistle: #F2D2FF (Secondary Highlights)
-   - Alice Blue: #DAE8FB (Body Text)
-
+  - Dusk Blue: #3E5BA3 (Cards, Image Frames & Borders)
+   - Pearl Aqua: #75CBD1 (Top Accent Bar, Active Progress Dots, Next Button)
+   - Thistle: #F2D2FF (Callout Badges)
+   - Alice Blue: #DAE8FB (Text)
 ---------------------------------------------------- */
+
 :root {
   --navy-deep: #0C0D45;
   --dusk-blue: #3E5BA3;
-  --lavender-soft: #c084fc;
-  --lavender-light: #e9d5ff;
+  --pearl-aqua: #75CBD1;
   --thistle: #F2D2FF;
   --alice-blue: #DAE8FB;
   
@@ -52,12 +50,12 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: 
+  background-image:
     radial-gradient(2px 2px at 20px 30px, var(--alice-blue), rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 40px 70px, var(--lavender-soft), rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 40px 70px, var(--pearl-aqua), rgba(0,0,0,0)),
     radial-gradient(1px 1px at 90px 40px, var(--thistle), rgba(0,0,0,0)),
     radial-gradient(2px 2px at 160px 120px, var(--alice-blue), rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 230px 190px, var(--lavender-soft), rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 230px 190px, var(--pearl-aqua), rgba(0,0,0,0)),
     radial-gradient(2px 2px at 300px 60px, var(--thistle), rgba(0,0,0,0)),
     radial-gradient(1px 1px at 370px 150px, var(--alice-blue), rgba(0,0,0,0));
   background-repeat: repeat;
@@ -76,27 +74,22 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 8px;
+  justify-content: center;
 }
 
 /* App Header */
 .app-header {
   margin-bottom: 16px;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
 }
 
 .brand-logo {
   font-family: var(--font-heading);
   font-size: 2.4rem;
   font-weight: 700;
-  color: var(--lavender-light);
+  color: var(--pearl-aqua);
   letter-spacing: 1.2px;
-  text-shadow: 0 0 24px rgba(192, 132, 252, 0.4);
-
+  text-shadow: 0 0 24px rgba(117, 203, 209, 0.4);
 }
 
 /* Onboarding Section Wrapper with Outer Nav Arrows */
@@ -117,13 +110,13 @@ body {
   border-radius: 50%;
   background: rgba(12, 13, 69, 0.88);
   border: 2px solid var(--dusk-blue);
-  color: var(--lavender-light);
+  color: var(--pearl-aqua);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   backdrop-filter: blur(12px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 15px rgba(117, 203, 209, 0.2);
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   outline: none;
   z-index: 5;
@@ -131,8 +124,8 @@ body {
 
 .nav-arrow:hover:not(:disabled) {
   background: var(--dusk-blue);
-  color: #ffffff;
-  border-color: var(--lavender-soft);
+  color: var(--alice-blue);
+  border-color: var(--pearl-aqua);
   transform: translateY(-2px) scale(1.08);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 22px rgba(192, 132, 252, 0.35);
 }
@@ -151,7 +144,7 @@ body {
   transform: none;
 }
 
-/* Expanded Main Card Container with Uniform Rounded Dark Border */
+/* Expanded Main Card Container with Increased Height */
 .main-card {
   flex: 1;
   max-width: 1000px;
@@ -161,17 +154,30 @@ body {
   background: rgba(12, 13, 69, 0.94);
   border: 2px solid var(--dusk-blue);
   border-radius: 28px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(192, 132, 252, 0.15);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(117, 203, 209, 0.18);
   backdrop-filter: blur(16px);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
   position: relative;
 }
 
-/* Viewport Window */
+/* Top Accent Bar across top of main card */
+.card-top-bar {
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--pearl-aqua), var(--thistle), var(--pearl-aqua));
+  box-shadow: 0 2px 10px rgba(117, 203, 209, 0.4);
+  flex-shrink: 0;
+}
+
+/* Slide Viewport */
 .slides-viewport {
   width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
   overflow: hidden;
   position: relative;
 }
@@ -180,25 +186,21 @@ body {
 .slides-track {
   display: flex;
   width: 100%;
+  height: 100%;
+  align-items: center;
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Individual Slide (100% Viewport Width) */
+/* Individual Slide Container */
 .slide {
   flex: 0 0 100%;
   min-width: 100%;
   box-sizing: border-box;
-  padding: 10px 0;
+  padding: 28px 36px 20px;
   user-select: none;
-}
-
-/* 3-Panel Layout Container per Slide */
-.slide-panel-container {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  gap: 24px;
-  width: 100%;
 }
 
 /* Left & Right Side Image Panel Frames */
