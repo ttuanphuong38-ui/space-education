@@ -1,0 +1,7 @@
+# Local environment & Firebase production credentials
+config.js
+
+# OS & Environment files
+.DS_Store
+Thumbs.db
+node_modules/
