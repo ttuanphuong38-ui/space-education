@@ -2,7 +2,7 @@
    CosmoHub Onboarding Single-Card Slide Layout Styles
    Palette:
    - Deep Navy: #0C0D45 (Screen Background)
-  - Dusk Blue: #3E5BA3 (Cards, Image Frames & Borders)
+   - Dusk Blue: #3E5BA3 (Cards, Image Frames & Borders)
    - Pearl Aqua: #75CBD1 (Top Accent Bar, Active Progress Dots, Next Button)
    - Thistle: #F2D2FF (Callout Badges)
    - Alice Blue: #DAE8FB (Text)
@@ -14,7 +14,7 @@
   --pearl-aqua: #75CBD1;
   --thistle: #F2D2FF;
   --alice-blue: #DAE8FB;
-  
+
   --font-heading: 'Fredoka', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
@@ -127,7 +127,7 @@ body {
   color: var(--alice-blue);
   border-color: var(--pearl-aqua);
   transform: translateY(-2px) scale(1.08);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 22px rgba(192, 132, 252, 0.35);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 22px rgba(117, 203, 209, 0.4);
 }
 
 .nav-arrow:active:not(:disabled) {
@@ -203,116 +203,53 @@ body {
   justify-content: center;
 }
 
-/* Left & Right Side Image Panel Frames */
-.slide-image-panel {
-  flex: 0 0 260px;
-  width: 260px;
-  height: 500px;
-  background: rgba(12, 13, 69, 0.85);
-  border: 2px solid var(--dusk-blue);
-  border-radius: 24px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 15px rgba(62, 91, 163, 0.2);
-  backdrop-filter: blur(12px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Empty Image tag & Fallback frame presentation */
-.side-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Empty image placeholder fallback styling when src is empty */
-.side-img[src=""],
-.side-img:not([src]) {
-  opacity: 0;
-}
-
-.slide-image-panel::before {
-  content: 'Image Placeholder';
-  position: absolute;
-  font-family: var(--font-heading);
-  font-size: 0.85rem;
-  color: var(--alice-blue);
-  opacity: 0.4;
-  text-align: center;
-  padding: 12px;
-  pointer-events: none;
-}
-
-/* Center Content Main Card Panel */
-.slide-content-center {
-  flex: 0 0 680px;
-  width: 680px;
-  min-height: 500px;
-  background: rgba(12, 13, 69, 0.96);
-  border: 2px solid var(--dusk-blue);
-  border-radius: 26px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(117, 203, 209, 0.2);
-  backdrop-filter: blur(16px);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Distinct Header Banner / Accent Bar across top of center card */
-.card-top-bar {
-  height: 8px;
-  width: 100%;
-  background: var(--pearl-aqua);
-  box-shadow: 0 2px 10px rgba(117, 203, 209, 0.4);
-}
-
-/* Main Card Content Area */
-.slide-body {
-  padding: 44px 44px 94px; /* Space reserved for bottom controls footer */
+/* Slide Content Wrapper */
+.slide-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  flex-grow: 1;
-  justify-content: center;
+  width: 100%;
+}
+
+.slide-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .slide-heading {
   font-family: var(--font-heading);
-  font-size: 2.35rem;
+  font-size: 2.25rem;
   font-weight: 700;
   color: var(--alice-blue);
-  margin-bottom: 16px;
-  line-height: 1.25;
+  margin-bottom: 10px;
+  line-height: 1.2;
 }
 
 .slide-subtitle {
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   color: var(--alice-blue);
   opacity: 0.9;
-  line-height: 1.6;
-  max-width: 520px;
-  margin-bottom: 28px;
+  line-height: 1.5;
+  max-width: 740px;
+  margin-bottom: 14px;
 }
 
-/* Callout Highlights / Badges - Completely static, horizontal, standard aligned */
+/* Callout Highlights / Badges */
 .badge-container {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .badge {
   display: inline-block;
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
-  padding: 10px 24px;
+  padding: 8px 24px;
   border-radius: 50px;
   color: var(--navy-deep);
-  transform: none;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
 
@@ -327,7 +264,7 @@ body {
 }
 
 .slide-note {
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 500;
   color: var(--pearl-aqua);
   opacity: 0.95;
@@ -335,71 +272,104 @@ body {
 
 /* Action Button */
 .action-container {
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .btn-start {
   display: inline-block;
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   font-weight: 700;
   color: var(--navy-deep);
   background-color: var(--pearl-aqua);
-  padding: 14px 34px;
+  padding: 12px 32px;
   border-radius: 50px;
   text-decoration: none;
   border: none;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(117, 203, 209, 0.4);
+  box-shadow: 0 6px 18px rgba(117, 203, 209, 0.4);
   transition: all 0.25s ease;
 }
 
 .btn-start:hover {
   background-color: var(--alice-blue);
   transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 8px 26px rgba(218, 232, 251, 0.5);
+  box-shadow: 0 8px 24px rgba(218, 232, 251, 0.5);
 }
 
-/* Bottom Controls Footer inside Center Card Area */
-.card-footer {
-  width: 680px;
-  margin: 0 auto;
+/* Expanded Centered Image Placeholder Container Box */
+.slide-image-container {
+  width: 100%;
+  max-width: 720px;
+  height: 250px;
+  margin-top: 18px;
+  border: 2px dashed rgba(117, 203, 209, 0.4);
+  border-radius: 18px;
+  background: rgba(12, 13, 69, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.slide-image-container::before {
+  content: 'https://i.pinimg.com/originals/6c/93/de/6c93de2ae7118c79c79b750462814002.gif';
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  color: var(--pearl-aqua);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  padding: 18px 36px 22px;
+  top: 0;
+  left: 0;
+  border-radius: 16px;
+  transition: opacity 0.3s ease;
+}
+
+.slide-image[src=""],
+.slide-image:not([src]) {
+  opacity: 0;
+}
+
+/* Bottom Card Footer with Progress Indicator Dots */
+.card-footer {
+  width: 100%;
+  padding: 16px 36px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
   border-top: 1.5px solid rgba(62, 91, 163, 0.4);
   background: rgba(12, 13, 69, 0.98);
-  border-bottom-left-radius: 24px;
-  border-bottom-right-radius: 24px;
-}
-
-/* Bottom-Left Controls: Dots Only */
-.nav-status {
-  display: flex;
-  align-items: center;
+  border-bottom-left-radius: 26px;
+  border-bottom-right-radius: 26px;
+  flex-shrink: 0;
 }
 
 .dots-indicator {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
   background: var(--dusk-blue);
   border: none;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  outline: none;
+
 }
 
 .dot:hover {
@@ -407,7 +377,7 @@ body {
 }
 
 .dot.active {
-  width: 28px;
+  width: 30px;
   border-radius: 12px;
   background: var(--pearl-aqua);
   box-shadow: 0 0 12px rgba(117, 203, 209, 0.6);
