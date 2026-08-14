@@ -103,7 +103,7 @@ function nextSlide() {
     currentSlide++;
     updateSlider();
   } else {
-  // Navigate to main.html on the final slide
+// Navigate to main.html on the final slide
     navigateToMain();
   }
 }
