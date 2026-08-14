@@ -152,3 +152,4 @@ document.addEventListener('keydown', function (e) {
 // Initialize slide images and slider state on page load
 updateSlideImages();
 updateSlider();
+/*  */
