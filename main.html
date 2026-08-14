@@ -468,29 +468,47 @@
       transform: translateY(-1px);
     }
 
-
-    /* Return to Onboarding Link */
+  /* Return to Onboarding Link */
     .back-footer {
       margin-top: 10px;
       text-align: center;
+      width: 100%;
     }
 
     .back-link {
       font-family: var(--font-heading);
       font-size: 1rem;
-      color: var(--accent-mimolette); 
-      transition: color 0.2s ease;
+      color: var(--accent-mimolette);
       text-decoration: none;
       font-weight: 600;
+      transition: color 0.2s ease;
     }
 
     .back-link:hover {
-      text-decoration: underline;
       color: var(--accent-hawkbit);
+      text-decoration: underline;
     }
 
     /* Responsive Adjustments */
-    @media (max-width: 980px) {
+    @media (max-width: 1024px) {
+      .dashboard-container.logged-in,
+      .main-dashboard.logged-in,
+      #dashboard-wrapper.logged-in {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100% !important;
+        max-width: 1180px !important;
+        transform: none !important;
+      }
+
+      .user-profile-sidebar {
+        width: 100%;
+        max-width: 380px;
+      }
+    }
+
+    @media (max-width: 860px) {
+
       .cards-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 22px;
@@ -526,8 +544,8 @@
   <!-- Ambient Star Background -->
   <div class="stars-bg"></div>
 
-  <div class="dashboard-container">
-    
+  <div class="dashboard-container main-dashboard" id="dashboard-wrapper">
+
     <!-- Top Header Navigation -->
     <header>
       <a href="main.html" class="brand-logo">CosmoHub ✦</a>
@@ -538,16 +556,17 @@
         <!-- Unauthenticated State: Clean Capsule "Sign In" Button -->
         <button id="signin-btn" class="signin-btn">Sign In</button>
 
-        <!-- Authenticated State Profile Badge (Initially Hidden) -->
-        <div id="user-profile" class="user-profile" style="display: none;">
+        <!-- Authenticated State Profile Badge (Hidden entirely upon login to avoid redundancy) -->
+        <div id="user-profile" class="user-profile" style="display: none !important;">
           <div id="user-avatar-container" class="user-avatar-container">
             <img id="user-photo" class="user-photo" src="" alt="User Avatar" style="display: none;">
             <span id="user-initials" class="user-initials">AR</span>
           </div>
           <span id="user-name" class="user-name">Alex Rover</span>
           <button id="signout-btn" class="signout-btn">Sign Out</button>
+
         </div>
-              </div>
+      </div>
     </header>
 
     <!-- Main Hero Section -->
@@ -565,7 +584,7 @@
           <h2 class="card-title">Constellation Quizzes &amp; Guides</h2>
           <p class="card-description">Interactive challenges and star maps so you actually know what you're looking at tonight.</p>
         </div>
-        <a href="#learn" class="card-action-btn">Start Learning &#10141;</a>
+        <a href="learning.html" class="card-action-btn">Start Learning &#10141;</a>
       </article>
 
       <!-- Card 2 -->
@@ -596,8 +615,55 @@
   </div>
 
  
+  <!-- FULL-HEIGHT RIGHT PROFILE SIDEBAR (.user-profile-sidebar) -->
+  <aside class="user-profile-sidebar hidden" id="user-profile-sidebar">
+    
+    <!-- 1. Top Section (Mini Auth Bar replacement) -->
+    <div class="sidebar-top-header">
+      <div class="sidebar-mini-user">
+        <div class="sidebar-mini-avatar">
+          <img id="sidebar-mini-photo" class="sidebar-mini-photo" src="" alt="Avatar" style="display: none;">
+          <span id="sidebar-mini-initials" class="sidebar-mini-initials">AR</span>
+        </div>
+        <span id="sidebar-mini-name" class="sidebar-mini-name">Alex Rover</span>
+      </div>
+    </div>
 
-  
+    <!-- 2. Main Profile Card (Rounded Inner Card) -->
+    <div class="sidebar-main-card">
+      <div class="sidebar-large-avatar">
+        <img id="sidebar-user-photo" class="sidebar-user-photo" src="" alt="User Avatar" style="display: none;">
+        <span id="sidebar-user-initials" class="sidebar-user-initials">AR</span>
+      </div>
+      <h3 id="sidebar-user-name" class="sidebar-user-name">Alex Rover</h3>
+      <span id="sidebar-user-email" class="sidebar-user-email">alex.rover@example.com</span>
+    </div>
 
+    <!-- 3. Navigation Menu Items (All Items Uniformly Styled, No Active Glow/Border) -->
+    <nav class="sidebar-nav">
+      <a href="#gallery" class="sidebar-nav-link">
+        <span>My Gallery</span>
+        <span class="nav-arrow-icon">&gt;</span>
+      </a>
+      <a href="#dashboard" class="sidebar-nav-link">
+        <span>My Dashboard</span>
+        <span class="nav-arrow-icon">&gt;</span>
+      </a>
+      <a href="#achievement" class="sidebar-nav-link">
+        <span>My Achievement</span>
+        <span class="nav-arrow-icon">&gt;</span>
+      </a>
+    </nav>
+
+    <!-- 4. Bottom Action: Full-width Logout Button styled with Pohutukawa (#6A1A29) -->
+    <div class="sidebar-footer">
+      <button id="sidebar-logout-btn" class="sidebar-logout-btn">
+        Log out
+      </button>
+    </div>
+
+  </aside>
+  <!-- Firebase Modular Authentication Script -->
+  <script type="module" src="auth.js"></script>
 </body>
 </html>
