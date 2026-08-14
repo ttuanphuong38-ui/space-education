@@ -10,7 +10,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* CosmoHub Exact Palette */
     :root {
+      --hawkbit: #FED46D;
+      --mimolette: #F6941D;
+      --portland: #F0662A;
+      --pohutukawa: #6A1A29;
+      --catalina: #062375;
+      --midnight: #070A3C;
+
       --bg-midnight: #070A3C;
       --card-catalina: #062375;
       --accent-hawkbit: #FED46D;
@@ -38,7 +46,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 32px 24px 60px;
+      padding: 24px 24px 60px;
       position: relative;
       overflow-x: hidden;
     }
@@ -64,7 +72,7 @@
       pointer-events: none;
     }
 
-    /* Dashboard Shell Container */
+  /* Main Dashboard Container Shell */
     .dashboard-container {
       position: relative;
       z-index: 1;
@@ -73,6 +81,23 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      transition: margin 0.35s cubic-bezier(0.25, 1, 0.5, 1), transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* 1. CENTER THE 3 MAIN CARDS IN AVAILABLE SPACE UPON LOGIN */
+    .dashboard-container.logged-in,
+    .main-dashboard.logged-in,
+    #dashboard-wrapper.logged-in {
+      margin-left: auto !important;
+      margin-right: 360px !important; /* Sidebar width (340px) + spacing (20px) */
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+      width: calc(100% - 360px) !important;
+      max-width: 1200px !important;
+      transform: scale(0.92);
+      transform-origin: center center;
     }
 
     /* Header Nav Bar */
@@ -81,7 +106,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 44px;
+      margin-bottom: 36px;
       padding-bottom: 20px;
       border-bottom: 2px solid rgba(6, 35, 117, 0.8);
     }
@@ -102,7 +127,7 @@
       align-items: center;
     }
 
-    /* Unauthenticated State: Clean Styled Pill Button (Dusk Blue with Orange Border) */
+    /* Unauthenticated State: Clean Styled Pill Button */
     .signin-btn {
       font-family: var(--font-heading);
       font-size: 0.95rem;
@@ -124,72 +149,17 @@
       transform: translateY(-1px);
     }
 
-    /* Authenticated State Profile Badge */
+  /* HIDE TOP NAVBAR USER BADGE WHEN LOGGED IN (Redundancy Removal) */
     .user-profile {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background-color: var(--card-catalina);
-      border: 2px solid var(--accent-mimolette);
-      padding: 6px 16px;
-      border-radius: 50px;
-      box-shadow: 0 4px 14px rgba(246, 148, 29, 0.25);
-    }
-
-    .user-avatar-container {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background-color: var(--accent-hawkbit);
-      color: var(--bg-midnight);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-heading);
-      font-size: 0.95rem;
-      font-weight: 700;
-      overflow: hidden;
-      border: 2px solid var(--accent-hawkbit);
-      flex-shrink: 0;
-    }
-
-    .user-photo {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .user-name {
-      font-family: var(--font-heading);
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--accent-hawkbit);
-    }
-
-    .signout-btn {
-      font-family: var(--font-heading);
-      font-size: 0.8rem;
-      font-weight: 600;
-      background: transparent;
-      border: 1.5px solid var(--accent-portland);
-      color: var(--accent-portland);
-      padding: 4px 12px;
-      border-radius: 20px;
-      cursor: pointer;
-      margin-left: 4px;
-      transition: all 0.2s ease;
-    }
-
-    .signout-btn:hover {
-      background-color: var(--accent-portland);
-      color: #FFFFFF;
+      display: none !important;
     }
 
     /* Hero Section */
     .hero-section {
       text-align: center;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
       max-width: 780px;
+      width: 100%;
     }
 
     .hero-title {
@@ -216,10 +186,11 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 28px;
       width: 100%;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
+      transition: all 0.35s ease;
     }
 
-    /* Individual Action Card - Clean Catalina Blue card with rounded corners and uniform border */
+    /* Individual Action Card */
     .action-card {
       background-color: var(--card-catalina);
       border: 2px solid rgba(246, 148, 29, 0.35);
@@ -240,7 +211,6 @@
       box-shadow: 0 22px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(254, 212, 109, 0.2);
     }
 
-    /* Card Content Area */
     .card-content {
       margin-bottom: 32px;
     }
@@ -261,7 +231,6 @@
       line-height: 1.6;
     }
 
-    /* Bottom Card Button */
     .card-action-btn {
       display: inline-flex;
       align-items: center;
@@ -287,6 +256,81 @@
       box-shadow: 0 8px 24px rgba(246, 148, 29, 0.5);
     }
 
+    /* FULL-HEIGHT PROFILE SIDEBAR (.user-profile-sidebar) */
+    .user-profile-sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 340px;
+      height: 100vh;
+      z-index: 100;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: rgba(7, 10, 60, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-left: 1px solid rgba(254, 212, 109, 0.2);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+      transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .user-profile-sidebar.hidden {
+      transform: translateX(100%);
+      pointer-events: none;
+    }
+
+    /* 1) Top Section (Mini Auth Bar replacement) */
+    .sidebar-top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(254, 212, 109, 0.15);
+      margin-bottom: 12px;
+    }
+
+    .sidebar-mini-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sidebar-mini-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: var(--accent-hawkbit);
+      color: var(--bg-midnight);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      overflow: hidden;
+      border: 2px solid var(--accent-hawkbit);
+      flex-shrink: 0;
+    }
+
+    .sidebar-mini-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sidebar-mini-name {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent-hawkbit);
+      max-width: 220px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     /* Return to Onboarding Link */
     .back-footer {
       margin-top: 10px;
