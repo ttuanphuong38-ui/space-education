@@ -57,5 +57,57 @@
       </a>
     </div>
   </header>
+  <!-- Main Container -->
+  <main class="roadmap-page-container">
+    
+    <!-- Hero Header -->
+    <section class="roadmap-hero">
+      <h1 class="hero-title">CosmoHub Constellation Roadmap</h1>
+      <p class="hero-subtitle">Master 88 IAU constellations through mythology, stargazing guides, and interactive canvas challenges.</p>
+
+      <!-- Category Filter Pills -->
+      <div class="filter-pills">
+        <button class="filter-pill active" data-filter="all">All (88)</button>
+        <button class="filter-pill" data-filter="Famous">Famous (10)</button>
+        <button class="filter-pill" data-filter="Zodiac">Zodiac (12)</button>
+        <button class="filter-pill" data-filter="Locked">Season 2 (66)</button>
+      </div>
+    </section>
+
+    <!-- Roadmap Canvas & Serpentine Nodes Container -->
+    <div class="roadmap-wrapper">
+      <svg id="roadmap-svg" class="roadmap-svg" xmlns="http://www.w3.org/2000/svg">
+        <path id="roadmap-path-line" class="roadmap-path-line" d="" />
+        <path id="roadmap-path-glow" class="roadmap-path-glow" d="" />
+      </svg>
+
+      <div id="roadmap-nodes" class="roadmap-nodes-grid">
+        <!-- 88 Dynamic Nodes rendered by learning.js -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 3-STEP LESSON MODAL -->
+  <div id="lesson-modal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <span id="modal-category-badge" class="badge-category">Famous</span>
+          <h2 id="modal-title" class="modal-title">Orion</h2>
+          <span id="modal-latin-name" class="modal-subtitle">Latin: Orion</span>
+        </div>
+
+        <!-- Step Dots Indicator -->
+        <div class="step-indicator">
+          <div id="step-dot-1" class="step-dot active" title="Step 1: History">1</div>
+          <div id="step-dot-2" class="step-dot" title="Step 2: Stargazing Guide">2</div>
+          <div id="step-dot-3" class="step-dot" title="Step 3: Interactive Challenge">3</div>
+        </div>
+
+        <button id="modal-close-btn" class="modal-close-btn" title="Close Modal">&times;</button>
+      </div>
 </body>
 </html>
