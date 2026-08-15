@@ -194,5 +194,83 @@
                 </div>
               </div>
             </div>
+            <!-- Q4 & Q5: VIEWFINDER SNAP CANVAS ENGINE -->
+            <div id="viewfinder-view" class="challenge-sub-view hidden">
+              <div class="canvas-instruction-bar">
+                <span class="instruction-text">🔭 Drag the starry sky to align <strong id="viewfinder-target-name">Orion</strong> inside the camera reticle &amp; snap!</span>
+              </div>
+              <div class="viewfinder-game-container">
+                <div id="sky-viewport" class="sky-viewport">
+                  <canvas id="viewfinder-canvas" width="700" height="400"></canvas>
+                  
+                  <!-- Fixed Center Viewfinder Frame Overlay -->
+                  <div class="viewfinder-frame">
+                    <div class="reticle-line vert"></div>
+                    <div class="reticle-line horiz"></div>
+                    <div class="reticle-corner top-left"></div>
+                    <div class="reticle-corner top-right"></div>
+                    <div class="reticle-corner bottom-left"></div>
+                    <div class="reticle-corner bottom-right"></div>
+                    <div class="reticle-center-dot"></div>
+                  </div>
+
+                  <!-- Flash Overlay -->
+                  <div id="camera-flash-overlay" class="camera-flash-overlay hidden"></div>
+                </div>
+
+                <div class="viewfinder-controls">
+                  <button id="snap-photo-btn" class="snap-shutter-btn">
+                    <span class="shutter-icon">📸</span>
+                    <span class="shutter-text">SNAP PHOTO</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Challenge Question Navigation / Footer -->
+          <div class="challenge-footer">
+            <div id="challenge-feedback-msg" class="feedback-msg hidden">
+              <span id="feedback-icon">✓</span>
+              <span id="feedback-text">Correct answer! Great job stargazing.</span>
+            </div>
+            <button id="challenge-next-q-btn" class="modal-btn primary hidden">
+              Next Question &rarr;
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LEVEL COMPLETION REWARD MODAL -->
+  <div id="reward-modal" class="modal-backdrop hidden">
+    <div class="reward-card">
+      <div class="reward-star-burst">✨</div>
+      <h2 class="reward-title">Constellation Mastered!</h2>
+      <h3 id="reward-constellation-name" class="reward-constellation">Orion</h3>
+      
+      <!-- Stars Awarded Display -->
+      <div id="reward-stars-container" class="reward-stars">
+        <span class="star-icon glow">⭐</span>
+        <span class="star-icon glow">⭐</span>
+        <span class="star-icon glow">⭐</span>
+      </div>
+      
+      <p id="reward-score-text" class="reward-score-text">You solved 5 out of 5 challenges cleanly!</p>
+
+      <div class="reward-actions">
+        <button id="reward-retry-btn" class="modal-btn secondary">Retry Challenge</button>
+        <button id="reward-continue-btn" class="modal-btn primary">Continue Roadmap &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Engine -->
+  <script src="learning.js"></script>
 </body>
 </html>
