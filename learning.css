@@ -112,35 +112,3 @@ body {
   padding: 4px 10px;
   border-radius: 12px;
 }
-/* Stats Pills */
-.header-stats {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.stat-pill {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(26, 16, 60, 0.7);
-  padding: 6px 14px;
-  border-radius: var(--radius-pill);
-  border: 1px solid rgba(192, 132, 252, 0.2);
-}
-
-.stat-icon {
-  font-size: 1.1rem;
-}
-
-.stat-value {
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text-main);
-}
-
-.stat-label {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
