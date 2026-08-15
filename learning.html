@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CosmoHub - Constellation Roadmap</title>
+  
+  <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="learning.css">
+</head>
+<body>
+
+  <!-- Ambient Star Background -->
+  <div class="stars-bg"></div>
+
+  <!-- App Header Bar -->
+  <header class="app-header">
+    <div class="header-left">
+      <a href="main.html" class="brand-link" title="Return to Dashboard">
+        <span class="brand-logo">CosmoHub</span>
+      </a>
+    </div>
+
+    <!-- User Stats & Progress Bar -->
+    <div class="header-stats">
+      <div class="stat-pill" title="Total Stars Collected">
+        <span class="stat-icon">⭐</span>
+        <span id="total-stars-val" class="stat-value">0</span>
+        <span class="stat-label">Stars</span>
+      </div>
+
+      <div class="stat-pill" title="Constellations Completed">
+        <span class="stat-icon">✨</span>
+        <span id="completed-nodes-val" class="stat-value">0 / 22</span>
+        <span class="stat-label">Active</span>
+      </div>
+
+      <div class="progress-container" title="Overall Roadmap Progress">
+        <div class="progress-bar-bg">
+          <div id="roadmap-progress-fill" class="progress-fill" style="width: 0%;"></div>
+        </div>
+        <span id="progress-percent-text" class="progress-text">0%</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button id="reset-progress-btn" class="header-action-btn secondary" title="Reset local learning progress">
+        <span>🔄</span> Reset
+      </button>
+      <a href="main.html" class="header-action-btn primary">
+        <span>&larr;</span> Dashboard
+      </a>
+    </div>
+  </header>
+  <!-- Main Container -->
+  <main class="roadmap-page-container">
+    
+    <!-- Hero Header -->
+    <section class="roadmap-hero">
+      <h1 class="hero-title">CosmoHub Constellation Roadmap</h1>
+      <p class="hero-subtitle">Master 88 IAU constellations through mythology, stargazing guides, and interactive canvas challenges.</p>
+
+      <!-- Category Filter Pills -->
+      <div class="filter-pills">
+        <button class="filter-pill active" data-filter="all">All (88)</button>
+        <button class="filter-pill" data-filter="Famous">Famous (10)</button>
+        <button class="filter-pill" data-filter="Zodiac">Zodiac (12)</button>
+        <button class="filter-pill" data-filter="Locked">Season 2 (66)</button>
+      </div>
+    </section>
+
+    <!-- Roadmap Canvas & Serpentine Nodes Container -->
+    <div class="roadmap-wrapper">
+      <svg id="roadmap-svg" class="roadmap-svg" xmlns="http://www.w3.org/2000/svg">
+        <path id="roadmap-path-line" class="roadmap-path-line" d="" />
+        <path id="roadmap-path-glow" class="roadmap-path-glow" d="" />
+      </svg>
+
+      <div id="roadmap-nodes" class="roadmap-nodes-grid">
+        <!-- 88 Dynamic Nodes rendered by learning.js -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 3-STEP LESSON MODAL -->
+  <div id="lesson-modal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <span id="modal-category-badge" class="badge-category">Famous</span>
+          <h2 id="modal-title" class="modal-title">Orion</h2>
+          <span id="modal-latin-name" class="modal-subtitle">Latin: Orion</span>
+        </div>
+
+        <!-- Step Dots Indicator -->
+        <div class="step-indicator">
+          <div id="step-dot-1" class="step-dot active" title="Step 1: History">1</div>
+          <div id="step-dot-2" class="step-dot" title="Step 2: Stargazing Guide">2</div>
+          <div id="step-dot-3" class="step-dot" title="Step 3: Interactive Challenge">3</div>
+        </div>
+
+        <button id="modal-close-btn" class="modal-close-btn" title="Close Modal">&times;</button>
+      </div>
+</body>
+</html>
