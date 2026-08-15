@@ -1,0 +1,114 @@
+:root {
+  --bg-space-dark: #0d0b1d;
+  --bg-space-mid: #130f2e;
+  --bg-space-light: #1a103c;
+  --card-bg: rgba(26, 16, 60, 0.85);
+  
+  --accent-lavender: #c084fc;
+  --accent-lavender-glow: rgba(192, 132, 252, 0.4);
+  --accent-violet: #8b5cf6;
+  --accent-gold: #fbbf24;
+  --accent-emerald: #10b981;
+  --accent-rose: #f43f5e;
+  
+  --text-main: #f8fafc;
+  --text-muted: #dae8fb;
+  --text-dim: #94a3b8;
+
+  --font-heading: 'Fredoka', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --modal-backdrop: rgba(7, 5, 18, 0.85);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-pill: 50px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-space-dark);
+  background-image: url('https://i.pinimg.com/1200x/ef/52/e1/ef52e17ba388fb21facbd1744a030b2b.jpg') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Ambient Starfield Background */
+.stars-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image:
+    radial-gradient(1.5px 1.5px at 40px 60px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 150px 220px, var(--accent-lavender), rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 300px 100px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 480px 360px, var(--accent-gold), rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 620px 140px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 750px 480px, var(--accent-lavender), rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 500px 500px;
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   HEADER NAVIGATION BAR
+   ========================================================================== */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: rgba(13, 11, 29, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(192, 132, 252, 0.15);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-logo {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.5px;
+}
+
+.brand-badge {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-lavender);
+  background: rgba(192, 132, 252, 0.15);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
