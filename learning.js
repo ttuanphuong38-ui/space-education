@@ -33,4 +33,130 @@
   let skyPanOffset = { x: 0, y: 0 };
   let isDraggingSky = false;
   let dragStartPos = { x: 0, y: 0 };
-}())
+  
+  / --- AUDIO SYNTHESIZER ENGINE (Web Audio API) --- /
+  let audioCtx = null;
+
+  function initAudio() {
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (AudioContext) audioCtx = new AudioContext();
+    }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  }
+
+  function playTone(freq, type = 'sine', duration = 0.15, gainVal = 0.1) {
+    initAudio();
+    if (!audioCtx) return;
+    try {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    } catch (e) {
+      console.warn('Audio play exception', e);
+    }
+  }
+
+  function playConnectChime() {
+    playTone(523.25, 'sine', 0.12, 0.15); // C5
+    setTimeout(() => playTone(659.25, 'sine', 0.15, 0.15), 60); // E5
+  }
+
+  function playCameraShutter() {
+    playTone(180, 'triangle', 0.04, 0.2);
+    setTimeout(() => playTone(120, 'square', 0.08, 0.15), 50);
+  }
+
+  function playVictoryFanfare() {
+    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+    notes.forEach((note, idx) => {
+      setTimeout(() => playTone(note, 'sine', 0.25, 0.15), idx * 100);
+    });
+  }
+
+  function playErrorSound() {
+    playTone(160, 'sawtooth', 0.2, 0.15);
+  }
+
+  // --- INITIALIZATION ---
+  document.addEventListener('DOMContentLoaded', () => {
+    loadProgress();
+    fetchConstellationsData();
+    setupEventListeners();
+  });
+
+  function loadProgress() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        userProgress = JSON.parse(saved);
+      } else {
+        userProgress = {};
+      }
+    } catch (e) {
+      userProgress = {};
+    }
+  }
+
+  function saveProgress() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(userProgress));
+    } catch (e) {
+      console.error('Failed to save progress', e);
+    }
+    updateHeaderStats();
+  }
+
+  function fetchConstellationsData() {
+    fetch('data/constellations.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load constellations data');
+        return res.json();
+      })
+      .then(data => {
+        constellationsData = data;
+        renderRoadmap();
+        updateHeaderStats();
+      })
+      .catch(err => {
+        console.error('Error fetching data:', err);
+      });
+  }
+
+  // --- HEADER STATS RENDERER ---
+  function updateHeaderStats() {
+    let totalStars = 0;
+    let completedCount = 0;
+
+    const activeTotal = constellationsData.filter(c => c.category !== 'Locked').length || 22;
+
+    constellationsData.forEach(item => {
+      if (userProgress[item.id] && userProgress[item.id].completed) {
+        completedCount++;
+        totalStars += (userProgress[item.id].stars || 1);
+      }
+    });
+
+    const starsEl = document.getElementById('total-stars-val');
+    const completedEl = document.getElementById('completed-nodes-val');
+    const fillEl = document.getElementById('roadmap-progress-fill');
+    const textEl = document.getElementById('progress-percent-text');
+
+    if (starsEl) starsEl.textContent = totalStars;
+    if (completedEl) completedEl.textContent = `${completedCount} / ${activeTotal}`;
+
+    const pct = Math.round((completedCount / activeTotal) * 100);
+    if (fillEl) fillEl.style.width = `${pct}%`;
+    if (textEl) textEl.textContent = `${pct}%`;
+  }
+
+}());
