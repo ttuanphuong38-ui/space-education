@@ -130,33 +130,5 @@
       .catch(err => {
         console.error('Error fetching data:', err);
       });
-  }
-
-  // --- HEADER STATS RENDERER ---
-  function updateHeaderStats() {
-    let totalStars = 0;
-    let completedCount = 0;
-
-    const activeTotal = constellationsData.filter(c => c.category !== 'Locked').length || 22;
-
-    constellationsData.forEach(item => {
-      if (userProgress[item.id] && userProgress[item.id].completed) {
-        completedCount++;
-        totalStars += (userProgress[item.id].stars || 1);
-      }
-    });
-
-    const starsEl = document.getElementById('total-stars-val');
-    const completedEl = document.getElementById('completed-nodes-val');
-    const fillEl = document.getElementById('roadmap-progress-fill');
-    const textEl = document.getElementById('progress-percent-text');
-
-    if (starsEl) starsEl.textContent = totalStars;
-    if (completedEl) completedEl.textContent = `${completedCount} / ${activeTotal}`;
-
-    const pct = Math.round((completedCount / activeTotal) * 100);
-    if (fillEl) fillEl.style.width = `${pct}%`;
-    if (textEl) textEl.textContent = `${pct}%`;
-  }
-
+}
 }());
