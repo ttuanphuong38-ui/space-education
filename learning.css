@@ -145,7 +145,6 @@ body {
   font-size: 0.8rem;
   color: var(--text-muted);
 }
-
 /* Roadmap Progress Bar */
 .progress-container {
   display: flex;
@@ -172,48 +171,4 @@ body {
   font-family: var(--font-heading);
   font-size: 0.85rem;
   color: var(--accent-lavender);
-}
-
-/* Header Action Buttons */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.header-action-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding: 8px 18px;
-  border-radius: var(--radius-pill);
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s ease;
-}
-
-.header-action-btn.primary {
-  background: var(--accent-lavender);
-  color: var(--bg-space-dark);
-  box-shadow: 0 4px 14px rgba(192, 132, 252, 0.3);
-}
-
-.header-action-btn.primary:hover {
-  background: #d8b4fe;
-  transform: translateY(-1px);
-}
-
-.header-action-btn.secondary {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-muted);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.header-action-btn.secondary:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: var(--text-main);
 }
