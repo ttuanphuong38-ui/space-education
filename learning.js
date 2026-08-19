@@ -32,6 +32,7 @@
   let targetSkyIndex = 0;
   let skyPanOffset = { x: 0, y: 0 };
   let isDraggingSky = false;
+  let dragStartPos = { x: 0, y: 0 };
   
   / --- AUDIO SYNTHESIZER ENGINE (Web Audio API) --- /
   let audioCtx = null;
@@ -85,4 +86,49 @@
   function playErrorSound() {
     playTone(160, 'sawtooth', 0.2, 0.15);
   }
+
+  // --- INITIALIZATION ---
+  document.addEventListener('DOMContentLoaded', () => {
+    loadProgress();
+    fetchConstellationsData();
+    setupEventListeners();
+  });
+
+  function loadProgress() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        userProgress = JSON.parse(saved);
+      } else {
+        userProgress = {};
+      }
+    } catch (e) {
+      userProgress = {};
+    }
+  }
+
+  function saveProgress() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(userProgress));
+    } catch (e) {
+      console.error('Failed to save progress', e);
+    }
+    updateHeaderStats();
+  }
+
+  function fetchConstellationsData() {
+    fetch('data/constellations.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load constellations data');
+        return res.json();
+      })
+      .then(data => {
+        constellationsData = data;
+        renderRoadmap();
+        updateHeaderStats();
+      })
+      .catch(err => {
+        console.error('Error fetching data:', err);
+      });
+}
 }());
