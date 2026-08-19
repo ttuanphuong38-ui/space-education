@@ -130,5 +130,122 @@
       .catch(err => {
         console.error('Error fetching data:', err);
       });
-}
+  }
+
+  // --- HEADER STATS RENDERER ---
+  function updateHeaderStats() {
+    let totalStars = 0;
+    let completedCount = 0;
+
+    const activeTotal = constellationsData.filter(c => c.category !== 'Locked').length || 22;
+
+    constellationsData.forEach(item => {
+      if (userProgress[item.id] && userProgress[item.id].completed) {
+        completedCount++;
+        totalStars += (userProgress[item.id].stars || 1);
+      }
+    });
+
+    const starsEl = document.getElementById('total-stars-val');
+    const completedEl = document.getElementById('completed-nodes-val');
+    const fillEl = document.getElementById('roadmap-progress-fill');
+    const textEl = document.getElementById('progress-percent-text');
+
+    if (starsEl) starsEl.textContent = totalStars;
+    if (completedEl) completedEl.textContent = `${completedCount} / ${activeTotal}`;
+
+    const pct = Math.round((completedCount / activeTotal) * 100);
+    if (fillEl) fillEl.style.width = `${pct}%`;
+    if (textEl) textEl.textContent = `${pct}%`;
+  }
+
+  // --- ROADMAP PATH & NODE GENERATOR ---
+  function renderRoadmap(filter = 'all') {
+    const container = document.getElementById('roadmap-nodes');
+    if (!container) return;
+    container.innerHTML = '';
+
+    // Determine lock/unlock states based on completion order
+    let previousCompleted = true; // Level 1 (first active node) is always unlocked initially
+
+    constellationsData.forEach((item, index) => {
+      const levelNum = index + 1;
+      const isLockedPlaceholder = item.category === 'Locked' || item.unlocked === false;
+      const isCompleted = userProgress[item.id] && userProgress[item.id].completed;
+      const starsEarned = userProgress[item.id] ? (userProgress[item.id].stars || 0) : 0;
+
+      // Active state determination
+      let nodeState = 'locked';
+      if (!isLockedPlaceholder) {
+        if (isCompleted) {
+          nodeState = 'completed';
+          previousCompleted = true;
+        } else if (previousCompleted) {
+          nodeState = 'active';
+          previousCompleted = false; // subsequent uncompleted active nodes stay locked until previous is done
+        }
+      }
+
+      // Create Node DOM element
+      const wrapper = document.createElement('div');
+      wrapper.className = `node-wrapper state-${nodeState}`;
+
+      // Zigzag position assignment: Left -> Center -> Right -> Center
+      const offsetPos = index % 4;
+      if (offsetPos === 0) wrapper.classList.add('offset-center');
+      else if (offsetPos === 1) wrapper.classList.add('offset-left');
+      else if (offsetPos === 2) wrapper.classList.add('offset-center');
+      else if (offsetPos === 3) wrapper.classList.add('offset-right');
+
+      wrapper.dataset.filter = isLockedPlaceholder ? 'Locked' : item.category;
+      wrapper.dataset.id = item.id;
+
+      // Filter Visibility
+      if (filter !== 'all' && wrapper.dataset.filter !== filter) {
+        wrapper.style.display = 'none';
+      }
+
+      // Inner HTML construction
+      let circleInner = '';
+      if (nodeState === 'completed') {
+        const starIcons = '⭐'.repeat(starsEarned) + '★'.repeat(3 - starsEarned);
+        circleInner = `
+          <div class="node-number">#${levelNum}</div>
+          <div class="node-stars-badge">${starIcons}</div>
+        `;
+      } else if (nodeState === 'active') {
+        circleInner = `
+          <div class="node-number">#${levelNum}</div>
+          <div class="node-start-badge">START</div>
+        `;
+      } else {
+        const seasonBadge = levelNum > 22 ? `<div class="node-season-badge">Season 2</div>` : '';
+        circleInner = `
+          <span class="node-lock-icon">🔒</span>
+          ${seasonBadge}
+        `;
+      }
+
+      wrapper.innerHTML = `
+        <div class="node-circle" data-id="${item.id}">
+          ${circleInner}
+        </div>
+        <div class="node-label">${item.name}</div>
+        <div class="node-category-tag">${isLockedPlaceholder ? 'Locked' : item.category}</div>
+      `;
+
+      // Event Listener
+      if (nodeState === 'active' || nodeState === 'completed') {
+        wrapper.querySelector('.node-circle').addEventListener('click', () => {
+          openLessonModal(item);
+        });
+      }
+
+      container.appendChild(wrapper);
+    });
+
+    // Render Serpentine SVG connecting line
+    setTimeout(drawRoadmapSVGPath, 100);
+  }
+
 }());
