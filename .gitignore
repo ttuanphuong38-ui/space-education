@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-# Local environment & Firebase production credentials
-config.js
-
-# OS & Environment files
-.DS_Store
-Thumbs.db
-node_modules/
-=======
 config.js
 // Firebase Project Configuration Credentials for CosmoHub
 export const firebaseConfig = {
@@ -17,4 +8,3 @@ export const firebaseConfig = {
   messagingSenderId: "338419155792",
   appId: "1:338419155792:web:1e7bf7b5f86c393b986255"
 };
->>>>>>> fc4ee3a (chore: add gitignore to ignore config.js)
