@@ -93,7 +93,6 @@ function updateSlider() {
   } else {
     nextBtn.setAttribute('aria-label', 'Next slide');
     nextBtn.setAttribute('title', 'Next Slide');
-
   }
 }
 
